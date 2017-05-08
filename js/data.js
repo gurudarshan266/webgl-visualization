@@ -1,10 +1,30 @@
 function handleMsg(msg) {
-  if (VISIBLE) {
-    pub = [30.666266,-84.199219]
-	  sub = [[23.795398,72.597656]]
-    addData(pub, sub);
-    //addData(msg.pub, msg.subs);
-  }
+	if (VISIBLE) {
+		pub = [30.666266,-84.199219]
+		sub = [[23.795398,72.597656]]
+		
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+		
+			if (this.readyState == 4 && this.status == 200) {
+				//document.getElementById("demo").innerHTML = this.responseText;
+				if (!this.responseText.startsWith("NODATA") ) 
+				{
+					j = JSON.parse(this.responseText);
+					pub2 = j["sender"];
+					sub2 = [j["receiver"]];
+
+					addData(pub2, sub2);
+					console.log(j);
+				}
+			}
+		};
+		xhttp.open("GET", "receive.php", true);
+		xhttp.send();
+
+		//addData(pub, sub);
+		//addData(msg.pub, msg.subs);
+	}
 }
 
 var pubnub = PUBNUB.init({
@@ -36,5 +56,5 @@ var z = setInterval(function() {
       handleMsg(x[count]);
       count++;
     }
-  }, 100);
-}, 3000);
+  }, 1000);
+}, 30000);
