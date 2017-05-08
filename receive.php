@@ -1,5 +1,6 @@
 <?php
 
+
 require_once __DIR__ . '/vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 
@@ -23,8 +24,10 @@ $channel->basic_consume('hello', '', false, true, false, false, $callback);
     //break;
     $channel->wait();
     break;
+
 }*/
-$timeout = 1;
+
+$timeout = 0.9;
 try{
             $channel->wait(null, false , $timeout);
 }
