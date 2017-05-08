@@ -1,6 +1,9 @@
 function handleMsg(msg) {
   if (VISIBLE) {
-    addData(msg.pub, msg.subs);
+    pub = [30.666266,-84.199219]
+	  sub = [[23.795398,72.597656]]
+    addData(pub, sub);
+    //addData(msg.pub, msg.subs);
   }
 }
 
