@@ -10,12 +10,16 @@ function handleMsg(msg) {
 				//document.getElementById("demo").innerHTML = this.responseText;
 				if (!this.responseText.startsWith("NODATA") ) 
 				{
-					j = JSON.parse(this.responseText);
-					pub2 = j["sender"];
-					sub2 = [j["receiver"]];
+					transfers = JSON.parse(this.responseText);
+					for (var i=0; i<transfers.length; i++) {
+						j = transfers[i];
+						pub2 = j["sender"];
+						sub2 = j["receiver"];
 
-					addData(pub2, sub2);
-					console.log(j);
+						addData(pub2, sub2);
+					}
+					console.log(transfers);
+					
 				}
 			}
 		};
