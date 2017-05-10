@@ -18,7 +18,7 @@ function startWorker() {
                     addData(pub2, sub2);
 
                 }
-                console.log(transfers);
+               //console.log(transfers);
 
             }
         };
